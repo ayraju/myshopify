@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mobile Shop</title>
+  <%= stylesheet_link_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  
+  <!-- icons -->
+  <link rel="shortcut icon" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/shopify-57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="../assets/shopify-72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="../assets/shopify-114.png">
+  
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <%= link_to 'Mobile Shop', '/', :class => 'brand' %>
+        
+        <% if current_shop %>
+          <div class="nav-collapse">
+          
+            <ul class="nav">
+              
+           <li class="dropdown"> <!-- drop down -->
+ <%= link_to 'Categories', 'home_index_category_path',  :class => 'shop_name dropdown-toggle', :'data-toggle' => 'dropdown' %>
+          <ul class="dropdown-menu">
+        <li><%= link_to raw('Android Mobiles'), "show_android" %></li>
+                <li><%= link_to raw('Basic Models'), "show_basic" %></li>
+            
+                <li><%= link_to raw('Camera Models'), "show_camera" %></li>
+              </ul></li>
+              <li class='<%= active_nav_class('home', 'design') %>'><%#= link_to 'Bootstrap Info', '/design' %></li>
+            </ul>
+          </div>
+          
+          <ul class="nav pull-right">
+            <li class="dropdown">
+              <%= link_to raw(current_shop.url+' <b class="caret"></b>'), "https://#{current_shop.url}", :class => 'shop_name dropdown-toggle', :'data-toggle' => 'dropdown'  %>
+              <ul class="dropdown-menu">
+                <li><%= link_to raw('<i class="icon-home"></i> My Shop'), "http://"+current_shop.url, :target => 'blank' %></li>
+                <li><%= link_to raw('<i class="icon-cog"></i>  Admin'), "http://"+current_shop.url+"/admin", :target => 'blank' %></li>
+                <li class="divider"></li>
+                <li><%= link_to raw('<i class="icon-off"></i> logout'), logout_path %></li>
+              </ul>
+            </li>
+          </ul>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="container">
+    
+    <div class="content">
+    <div class="row">
+  <div class="span3">
+    <div class="well">  
+      <h3>Check out the <code>home_controller</code></h3>
+      <hr style="margin:2px 0 7px"/>
+      <p>The controller in this demo application fetches the newest 5 orders and products and makes them available as instance variables <code>@orders</code> and <code>@products</code></p>
+    
+      <br/>
+    
+      <h3>Take a look at <code>index.html.erb</code></h3>
+      <hr style="margin:2px 0 7px"/>
+      <p>Index is the Ruby template you are currently viewing. Have a look at the markup and Ruby code to see how the Shopify API is being used. It's located at <code>views/home/index.html.erb</code></p>
+    </div>-->
+    
+    <h3>Additional Docs</h3>
+    <p>You can become an expert pretty quickly by reading up on these docs:</p>
+    
+    <ul>
+      <li>
+        <%= link_to 'API documentation', 'http://www.shopify.com/developers/api/' %>
+        <span class="note">Learn what you can do with the Shopify API</span>
+      </li><br/>
+      <li>
+        <%= link_to 'Bootstrap documentation', 'http://twitter.github.com/bootstrap/' %>
+        <span class="note">Find out what you can do with Twitter Bootstrap</span>
+      </li><br/>
+      <li>
+        <%= link_to 'Wiki', 'http://wiki.shopify.com/' %>
+        <span class="note">Get more information and share your knowledge</span>
+      </li><br/>
+      <li>
+        <%= link_to 'Forum', 'http://forums.shopify.com/community' %>
+        <span class="note">Ask questions and see what others already wanted to know</span>
+      </li>
+    </ul>
+  
+    <hr/>
+  
+    <h3>Once you're ready</h3>
+  
+    <p>We'd love to see what you create using the Shopify API. You can keep up to date on the latest and greatest via the <%= link_to 'Shopify API Twitter Account', 'http://www.twitter.com/shopifyapi' %>. You can also read the latest information on the <%= link_to 'API Publishing Page', 'http://www.shopify.com/developers/publishing/' %>.</p>
+    
+    <br/>
+    
+    <a href="https://twitter.com/shopifyapi" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @shopifyapi</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </div> <!-- span3 / left-column -->
+
+      <%= yield %>
+    </div>
+    
+    <footer>
+      <p>A Shopify application by Mobile Shop</p>
+    </footer>
+    
+  </div> <!-- /container -->
+</body>
+</html>
